@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tareas · Arquitectura hexagonal</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main class="page">
+      <header class="header">
+        <span class="eyebrow">DEMO · ARQUITECTURA HEXAGONAL</span>
+        <h1>Administrador de tareas</h1>
+        <p>Crea, consulta y ejecuta tareas usando el adaptador HTTP del proyecto Python.</p>
+      </header>
+
+      <section class="connection" aria-label="Conexión con la API">
+        <label for="api-url">URL de la API</label>
+        <input id="api-url" type="url" value="http://127.0.0.1:8000" required />
+        <span>Inicia FastAPI antes de usar esta página.</span>
+      </section>
+
+      <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+
+      <div class="grid">
+        <section class="card">
+          <div class="card-heading"><span class="step">01</span><h2>Crear tarea</h2></div>
+          <form id="create-form">
+            <label for="create-name">Nombre</label>
+            <input id="create-name" name="name" type="text" placeholder="ej. demo" required />
+
+            <label for="create-description">Descripción</label>
+            <input id="create-description" name="description" type="text" placeholder="¿Qué hace esta tarea?" />
+
+            <label for="create-data">Datos</label>
+            <textarea id="create-data" name="data" rows="5" placeholder="Contenido que recibirá el ejecutor"></textarea>
+
+            <button type="submit">Crear tarea</button>
+          </form>
+        </section>
+
+        <section class="card">
+          <div class="card-heading"><span class="step">02</span><h2>Consultar tarea</h2></div>
+          <form id="read-form" class="lookup-form">
+            <label for="read-name">Nombre de la tarea</label>
+            <div class="inline-fields">
+              <input id="read-name" name="name" type="text" placeholder="ej. demo" required />
+              <button type="submit">Buscar</button>
+            </div>
+          </form>
+
+          <div id="task-result" class="task-result" hidden>
+            <span class="result-label">TAREA ENCONTRADA</span>
+            <h3 id="result-name"></h3>
+            <p id="result-description"></p>
+            <div class="data-box"><span>Datos</span><pre id="result-data"></pre></div>
+            <button id="execute-button" type="button" class="secondary">Ejecutar tarea</button>
+            <p id="execution-result" class="execution-result" hidden></p>
+          </div>
+          <p id="empty-result" class="empty-result">Crea una tarea o busca una por su nombre para verla aquí.</p>
+        </section>
+      </div>
+
+      <footer>Las tareas se guardan en memoria y desaparecen cuando se reinicia la API.</footer>
+    </main>
+  </body>
+</html>

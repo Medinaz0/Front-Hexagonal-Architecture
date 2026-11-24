@@ -1,0 +1,2 @@
+# Git metadata lives here because the workspace mounts .git as read-only.
+.git-data/
